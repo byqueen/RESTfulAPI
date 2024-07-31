@@ -1,7 +1,8 @@
-2024-07-30
+2024-07-30 
+
 
 >>> restful_server_making_jsonData
-<img src="https://cafeptthumb-phinf.pstatic.net/MjAyNDA3MzFfMjU3/MDAxNzIyMzg4NzMzNDIx.oz_SQQ8NlnU6pYEOOmptNVP0AG5QfGoeb_tRt9yMBeEg.b5muSWNko4UixXY7mI-rrwfGVJR-47n8e_t7o_RvzK0g.PNG/restful_server_making_jsonData.png?type=w1600" style="width:500px;height:auto;" />
+<img src="https://cafeptthumb-phinf.pstatic.net/MjAyNDA3MzFfMjU3/MDAxNzIyMzg4NzMzNDIx.oz_SQQ8NlnU6pYEOOmptNVP0AG5QfGoeb_tRt9yMBeEg.b5muSWNko4UixXY7mI-rrwfGVJR-47n8e_t7o_RvzK0g.PNG/restful_server_making_jsonData.png?type=w1600" style="width:700px;height:auto;" />
 
 
 >>> restful_client_parsing_data
