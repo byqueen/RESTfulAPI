@@ -1,7 +1,7 @@
 1. 작업일자 : 2024-07-30(화)<br />
 2. 작업자 : 황보영<br />
 3. 작업내용<br />
-- RESTful API Server & Client -<br />
+- RESTful API Server & Client
 (1) Server 단에서 방명록 테이블 데이터를 JSON 데이터로 만듦<br />
 (2) Client 단에서 가져온 데이터를 파싱한 후 검색과 페이지 나누기를 추가함<br /><br />
 
