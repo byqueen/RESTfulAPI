@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/member/insertMemberForm.html</h4>
+
+<form name="f1" action="/member/insertMember" enctype="multipart/form-data" method="post">
+<table th:align="center" border="1" 
+	th:cellpadiing="0" th:cellspacing="0" th:width="350">
+<tr><th width="100">아이디</th>
+	<td><input type="text" name="id" /></td></tr>
+<tr><th>비밀번호</th><td><input type="password" name="pwd" /></td>
+<tr><th>이름</th>	<td><input type="text" name="name" /></td>
+<tr><th>이미지</th><td><input type="file" name="file" /></td>
+</table>
+
+<div style="margin:5px;">
+<input type="submit" value="회원등록하기" />
+<input type="reset" value="다시작성하기" />
+</div>
+
+</form>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

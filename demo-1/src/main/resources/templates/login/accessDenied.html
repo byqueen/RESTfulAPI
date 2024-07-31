@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h2>접근 불가</h2>
+
+<h3>죄송합니다. 페이지에 대한 접근 권한이 없습니다.</h3>
+<h4>다시 로그인을 원하시면 <a href="/login/loginform"><u>여기</u></a>를 클릭해주세요.</h4>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

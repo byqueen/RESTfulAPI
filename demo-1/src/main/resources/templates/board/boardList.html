@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/board/boardList.html</h4>
+
+<span th:text="'게시글 수 : '+${map.listCount}"></span><br />
+<!-- 
+<span th:text="'게시글 수(.size) : '+${map.li.size()}"></span><br />
+
+<span th:text="${'레코드수(lists.size()) : '+ #lists.size(map.li)}" ></span><br />
+<span th:text="${'나이합(aggregates.sum()) : ' + #aggregates.sum(map.li.![age])}"></span><br />
+<span th:text="${'나이평균 : ' + #numbers.formatDecimal(#aggregates.sum(map.li.![age])*1.0 / #lists.size(map.li), 1, 1)}"></span><br />
+ -->
+<a href="/board/insertBoardForm">글작성하기</a><br /><br />
+
+<table th:align="center" border="1" 
+	   th:cellpadiing="0" th:cellspacing="0" th:width="700">
+<tr>
+	<th width="50">인덱스</th>
+	<th width="50">번호</th>
+	<th width="100">이름</th>
+	<th width="100">나이</th>
+	<th width="100">특이사항</th>
+	<th width="100">등록일자(문자형)</th>
+	<th width="100">등록일자(날짜형)</th>
+</tr>
+<tr th:each="m, count : ${map.li}">
+    <td th:block th:with="index=${count.index + 1}"
+    	th:text=${index}>
+    </td>
+    <td><a th:href="@{/board/editBoard(idx=${m.idx},name=${m.name})}" 
+           th:text="${m.idx}"></a>
+    </td>
+    <td th:text="${m.name}"></td>
+    <td th:text="${m.age}"></td>
+    <td th:text="${m.etc}"></td>
+    <td><span th:text="${#strings.substring(m.regdate, 0, 10).replace('-', '년 ').replace('-', '월 ') + '일'}"></span></td>
+    <td>[[${#dates.format(m.regdate1, 'yyyy')}]]년 
+        [[${#dates.format(m.regdate1, 'MM')}]]월 
+        [[${#dates.format(m.regdate1, 'dd')}]]일
+    </td>
+</tr>
+</table>
+
+<div style="margin:5px;">
+<form action="/board/boardList">
+<select name="searchCondition">
+	<option value="name">이름</option>
+	<option value="age">나이</option>
+</select>
+<input type="text" name="searchValue" style="width:150px;height:auto;" />
+<input type="submit" value="검색하기" />
+</form>
+</div>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

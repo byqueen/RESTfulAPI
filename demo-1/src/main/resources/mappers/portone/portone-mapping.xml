@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.portone.PortoneDao">
+
+<insert id="insertPay" parameterType="com.example.portone.PortoneVo">
+	insert into mpay  
+	values (idx.nextval, #{gymnum}, #{membernum}, #{mpaynum}, #{mpaymethod}, 
+			#{mpayproduct}, #{mpayprice}, #{mpaydate}, #{mpaygym}, #{mpayperiod}, 
+			null, #{trainername}, #{ggoodsnum}, null, 0)
+</insert>
+
+<select id="selectPayOne" parameterType="com.example.portone.PortoneVo"
+					   resultType="com.example.portone.PortoneVo">
+	select * from mpay where mpaynum=#{mpaynum}
+</select>
+
+<!-- 
+	private String idx;
+	private String gymnum; //헬스장번호 (테이블)
+	private String membernum; //회원번호 (테이블)	
+	private String mpaynum; // 결제번호
+	private String mpaymethod; // 결제수단
+	private String mpayproduct; // 헬스장명 + 상품명
+	private String mpayprice; // 결제금액
+	private String mpaydate; // 결제일
+	private String mpaygym; // 헬스장명
+	private String mpayperiod; // 상품이용기간
+	private String mpaytime; // null
+	private String trainername; // 트레이너명
+	private String ggoodsnum; // 상품번호
+	private String tgoodsint; // null
+	private int cnt;
+ -->
+
+</mapper>

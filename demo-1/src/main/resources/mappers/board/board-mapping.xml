@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.board.BoardDao">
+
+<select id="boardList" parameterType="com.example.board.BoardVo"
+					   resultType="com.example.board.BoardVo">
+	select idx, name, age, etc, regdate, regdate as regdate1 from board0722
+	<if test="searchCondition=='name'">
+		where name like #{searchValue} 
+	</if>
+	<if test="searchCondition=='age'">
+		where age like #{searchValue} 
+	</if>
+	order by idx desc
+</select>
+
+<select id="listCount" parameterType="com.example.board.BoardVo"
+					   resultType="int">
+	select count(*) as listCount from board0722
+</select>
+
+<select id="editBoard" parameterType="com.example.board.BoardVo"
+					   resultType="com.example.board.BoardVo">
+	select idx, name, age, etc, regdate from board0722 
+	where idx=#{idx}
+</select>
+
+
+<insert id="insertBoard" parameterType="com.example.board.BoardVo">
+	insert into board0722 (idx, name, age, etc) 
+	values (idx.nextval, #{name}, #{age}, #{etc})
+</insert>
+
+<delete id="deleteBoard" parameterType="com.example.board.BoardVo">
+	delete from board0722 where idx=#{idx}
+</delete>
+
+<update id="updateBoard" parameterType="com.example.board.BoardVo">
+	update board0722 set name=#{name}, age=#{age}, etc=#{etc} 
+	where idx=#{idx}
+</update>
+
+</mapper>

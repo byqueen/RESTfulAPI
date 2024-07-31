@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/exam/examList.html</h4>
+
+<a href="/board/insertBoardForm">글작성하기</a><br />
+
+<table th:align="center" border="1" 
+	   th:cellpadiing="0" th:cellspacing="0" th:width="700">
+<tr>
+	<th width="50">인덱스</th>
+	<th width="50">번호</th>
+	<th width="100">이름</th>
+	<th width="70">국어점수</th>
+	<th width="70">영어점수</th>
+	<th width="70">수학점수</th>
+	<th width="70">역사점수</th>
+	<th width="70">개인별 <br />점수합계</th>
+	<th width="70">개인별 <br />점수평균</th>
+	<th width="80">평가</th>
+</tr>
+<tr th:each="m, count : ${li}"
+    th:style="${(m.kor + m.eng + m.math + m.hist) / 4 >= 90} ? 'background-color: lightgreen;' : ''">
+    <td th:block th:with="index=${count.index + 1}"
+    	th:text=${index}></td>
+    <td><a th:href="@{/board/editBoard(idx=${m.sno},name=${m.sname})}" 
+           th:text="${m.sno}"></a></td>
+    <td th:text="${m.sname}"></td>
+    <td th:text="${m.kor}"></td>
+    <td th:text="${m.eng}"></td>
+    <td th:text="${m.math}"></td>
+    <td th:text="${m.hist}"></td>
+    <td th:with="subjectSum=${m.kor + m.eng + m.math + m.hist}"
+    	th:text="${subjectSum}"></td>
+    <td th:with="subjectAvg=${(m.kor + m.eng + m.math + m.hist) / 4}"
+    	th:text="${subjectAvg}"></td>
+    <td>
+	    <span th:if="${(m.kor + m.eng + m.math + m.hist) / 4 >= 90}">수</span>
+	    <span th:if="${(m.kor + m.eng + m.math + m.hist) / 4 >= 80 && (m.kor + m.eng + m.math + m.hist) / 4 < 90}">우</span>
+	    <span th:if="${(m.kor + m.eng + m.math + m.hist) / 4 >= 70 && (m.kor + m.eng + m.math + m.hist) / 4 < 80}">미</span>
+	    <span th:if="${(m.kor + m.eng + m.math + m.hist) / 4 < 70}">재시험</span>
+	</td>
+</tr>
+<tr>
+	<td colspan=3 style="text-align:center;">점수합계</td>
+	<td th:each="subject : ${subjects}"
+        th:text="${#aggregates.sum(li.![__${subject}__])}"></td>
+    <td th:text="${#aggregates.sum(li.![kor + eng + math + hist]) }"></td>
+    <td></td>
+</tr>
+<tr>
+	<td colspan=3 style="text-align:center;">점수평균</td>
+	<td th:each="subject : ${subjects}"
+		th:text="${#numbers.formatDecimal(#aggregates.sum(li.![__${subject}__])*1.0 / #lists.size(li), 1, 1)}"></td>
+	<td></td>
+	<td th:text="${#numbers.formatDecimal(#aggregates.sum(li.![kor + eng + math + hist])* 1.0 /#lists.size(li)/4, 1, 1)}"></td>	
+</tr>
+</table>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/guest/insertGuestbookform.html</h4>
+
+<form name="f1" action="/guest/insertGuestbook" method="post">
+
+<div style="margin:5px;">
+<input type="submit" value="글등록하기" />
+</div>
+
+</form>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/portone/start.html</h4>
+
+<div class="kg_pay_btn" th:data-name="${m.dataName}" 
+						th:data-price="${m.dataPrice}" 
+						th:data-goodsnum="${m.dataGoodsnum}" >
+	<input type="text" id="datepicker" name="datepicker" th:value="${m.today}" Style="width:150px;" />
+	<button type="button" th:onclick="kg_request_pay()">결제하기</button>
+</div>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+
+
+<script th:inline="javascript">
+  function kg_request_pay() {
+    //전달할 데이터
+    var selectedDate = document.getElementById("datepicker").value;
+    var selectedGoodsName = document.querySelector(".kg_pay_btn").getAttribute("data-name");
+    var selectedGoodsPrice = document.querySelector(".kg_pay_btn").getAttribute("data-price");
+    var selectedGoodsNum = document.querySelector(".kg_pay_btn").getAttribute("data-goodsnum");
+
+    //kg이니시스 결제 API
+    var IMP = window.IMP; // 생략가능
+    IMP.init('imp77027061');  // 가맹점 식별코드
+
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({
+      pg: "html5_inicis",
+      pay_method: "card",
+      merchant_uid: "gpay_" + new Date().getTime(), //주문번호
+      name: '[[${m.gname}]]' +" "+ selectedGoodsName,
+      amount: selectedGoodsPrice, //숫자 타입
+      buyer_email: [[${m.mmail}]],
+      buyer_name: [[${m.mname}]],
+      buyer_tel: [[${m.mphone}]]
+    }, function (rsp) { //callback
+      console.log(rsp); // 콘솔로 값을 찍어야 웹에서 검사도구 콘솔에서 에러메시지를 확인할 수 있음
+      if ( rsp.success ) { //결제 성공시
+        var msg = '결제가 완료되었습니다.';
+        alert(msg)
+        var result = {
+          "mpaynum" : rsp.merchant_uid, //결제번호
+          "membernum" :[[${m.membernum}]], //회원번호
+          "mpaymethod":rsp.pay_method, //결제수단
+          "mpayproduct":rsp.name, //헬스장 이름 + 상품이름
+          "mpayprice":rsp.paid_amount, // 결제금액
+          "mpaydate" : new Date().toISOString().slice(0, 10), //결제일
+          "mpaygym" : [[${m.gname}]], //헬스장 이름
+          "mpayperiod" : selectedDate, //상품이용기간
+          "mpaytime" : "",
+          "trainername":"",
+          "ggoodsnum": selectedGoodsNum, //상품번호
+          "tgoodsint" : null,
+          "gymnum" : [[${m.gymnum}]] //헬스장 고유번호
+        }
+        console.log(result);
+		
+        $.ajax({
+          url:'/portone/insertMPay',
+          type:'POST',
+          contentType: 'application/json',
+          data:JSON.stringify(result), // rsp = object
+          success: function (res) { // 결제 성공
+            console.log(res);
+            location.href=res;
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        }); //ajax
+      } else {
+          var msg = '결제 실패';
+          msg += '\n에러내용 : ' + rsp.error_msg;
+        }
+      alert(msg);
+    });
+  }
+
+</script>
+
+</body>
+</html>

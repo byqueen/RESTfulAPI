@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.member.MemberDao">
+
+<select id="memberList" parameterType="com.example.member.MemberVo" 
+						resultType="com.example.member.MemberVo">
+	select idx, id, password, role, grade, name, fileStr, regdate 
+	from member0718
+</select>
+
+<select id="EditMember" parameterType="com.example.member.MemberVo" 
+						resultType="com.example.member.MemberVo">
+	select idx, id, pwd, role, grade, name, fileStr, regdate 
+	from member0718 
+	where id=#{id}
+</select>
+
+<insert id="insertMember">
+	insert into member0718 (idx, id, pwd, password, name, fileStr) 
+	values (idx.nextval, #{id}, #{pwd}, #{password}, #{name}, #{fileStr})
+</insert>
+
+<delete id="deleteMember">
+	delete from member0718 where id=#{id}
+</delete>
+
+<update id="updateMember">
+	update member0718 
+	set pwd=#{pwd}, password=#{password}, role=#{role}, grade=#{grade} 
+	where id=#{id} 
+</update>
+
+</mapper>

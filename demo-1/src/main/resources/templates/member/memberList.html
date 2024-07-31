@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/member/memberList.html</h4>
+
+회원수 : <td th:text="${countMember}"></td><br />
+<a href="/member/insertMemberForm">회원등록하기</a><br />
+<table th:align="center" border="1" th:cellpadiing="0" th:cellspacing="0" th:width="700">
+<tr>
+	<th width="50">번호</th>
+	<th width="100">아이디</th>
+	<th width="100">비밀번호</th>
+	<th width="100">권한</th>
+	<th width="100">등급</th>
+	<th width="100">이름</th>
+	<th width="100">이미지</th>
+	<th width="100">등록일자</th>
+</tr>
+<tr th:each="m : ${li}">
+	<td th:text="${m.idx}"></td>
+	<td><a th:href="@{/member/editMember(id=${m.id})}"
+			th:text="${m.id}"></a></td>
+	<td th:text="${m.password}"></td>
+	<td th:text="${m.role}"></td>
+	<td th:text="${m.grade}"></td>
+	<td th:text="${m.name}"></td>
+	<td>
+    	<img th:src="@{'/img/' + ${m.fileStr}}" style="width:95px;height:auto;">
+	</td>
+	<td th:text="${m.regdate}"></td>
+</tr>
+</table>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

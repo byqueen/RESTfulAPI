@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:replace="~{include/top}"></div>
+<section>
+<br />
+
+<div class="container" style="text-align:center;">
+
+<h4>templates/member/editMember.html</h4>
+
+회원등록일자 : [[${m.regdate}]]
+<form name="f1" method="post">
+<table th:align="center" border="1" th:cellpadiing="0" th:cellspacing="0" th:width="700">
+<tr><th bgcolor="beigh" width="100">아이디</th>
+	<td><input type="text" name="id" th:value="${m.id}" /></td></tr>
+<tr><th bgcolor="beigh" width="100">비밀번호</th>
+	<td><input type="password" name="pwd" th:value="${m.pwd}" /></td>
+<tr><th bgcolor="beigh" width="100">권한</th>
+	<td><input type="text" name="role" th:value="${m.role}" /></td>
+<tr><th bgcolor="beigh" width="100">등급</th>
+	<td><input type="text" name="grade" th:value="${m.grade}" /></td>
+<tr><th bgcolor="beigh" width="100">이름</th>
+	<td th:text="${m.name}"></td></tr>
+<tr><th bgcolor="beigh" width="100">이미지</th>
+	<td th:text="${m.fileStr}"></td></tr>
+</table>
+
+<div style="margin:5px;">
+<input type="submit" value="수정하기" onClick="f1.action='/member/updateMember'" />
+<input type="submit" value="삭제하기" th:formaction="@{/member/deleteMember}" />
+</div>
+
+</form>
+
+</div>
+
+<br />
+</section>
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

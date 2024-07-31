@@ -1,0 +1,108 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+
+/* #아이디명 : 단일 요소 */
+/* .클래스명 : 여러 요소 */
+
+
+header, body, footer { font-family: "Noto Sans KR", sans-serif; }
+html, body { width: 100%;
+    		 height: 100%; }
+.container { width: 100%;
+		     height: 60vmin; }
+
+header { background-color: ffffff;
+   		 height: 100px;
+ 		 line-height: 100px;
+  		 text-align: center;
+   		 vertical-align: middle;
+   		 font-size: 30px;
+   		 font-weight: bold;
+   		 color: #596164; }
+
+body { color: #596164; }
+
+section { line-height: 1.2em;
+		  text-align: center; }
+
+footer{ background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+   		height: 35px;
+   		line-height: 35px;
+   		text-align: center;
+   		vertical-align: middle;
+   		font-size: 13px;
+   		color: white; }
+
+nav { background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+	  height: 35px;
+      line-height: 35px;
+      vertical-align: middle;
+      font-size: 15px;
+      text-align: center;
+      font-weight: 600; }
+
+a { text-decoration: none;
+	color: #596164; }
+
+.linkW { text-decoration: none;
+		 color: #ffffff; }
+
+div { text-align: center;
+	  color: #596164; }
+
+table, th, td { border: 1px solid rgb(200, 200, 200);
+				border-collapse: collapse;
+				margin: auto;
+				font-size: 13px; }
+
+th { height: 25px;
+	 background-color: #e2d1c3;
+	 color: white; }
+
+td { word-wrap: break-word;
+	 padding : 3px; }
+
+input[type=button], input[type=submit], input[type=reset] {
+   background-color: #e2d1c3;
+   border: none;
+   border-radius: 5px;
+   color: white;
+   padding: 4px 10px;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 13px;
+   font-weight: bold;
+}
+
+input[type=text], input[type=number], input[type=password] {
+   box-sizing: border-box;
+   border: 1px solid #ccc;
+   line-height: 150%;
+   font-size: 12px;
+   width: 98%;
+   margin: 2px 2px 2px 2px;
+}
+
+textarea { width: 98%;
+   height: 100px;
+   padding: 10px;
+   margin: 3px 3px 0px 2px;
+   box-sizing: border-box;
+   border: 1px solid #ccc;
+   background-color: #f8f8f8;
+   font-size: 13px;
+   resize: none;
+}
+
+img { display: block;
+	  margin: auto; }
+
+#easyLoginT { width: 120px;
+			  border: 1px solid white;
+			  border-collapse: collapse; }
+
+#easyLoginT, #easyLoginTd { width: 120px; 
+							border: 1px solid white;
+							border-collapse: collapse;
+							font-size: 13px; }
